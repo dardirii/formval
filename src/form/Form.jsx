@@ -1,17 +1,6 @@
 import React from "react";
 import * as Validator from "validatorjs";
 
-const Input = ({ label, type, name, onChange }) => {
-  return (
-    <div>
-      <label>{label}:</label>
-      <br />
-      <input type={type} name={name} onChange={(e) => onChange(e.target.value)} />
-      <br />
-    </div>
-  );
-};
-
 const ShowErrors = ({ errors }) => {
   return (
     <ul style={{ color: "red", marginLeft: "-20px" }}>
@@ -82,17 +71,19 @@ export default class FormElement extends React.Component {
         {errors.length > 0 && <ShowErrors errors={errors} />}
         <h4>Login Page</h4>
         <form onSubmit={this.handleSubmit}>
-          <Input
+          <span>Email : </span>
+          <input
             type="text"
             name="email"
             label="Email"
-            onChange={(value) => this.setState({ email: value })}
-          />
-          <Input
+            onChange={(event) => this.setState({ email: event.target.value })}
+          /><br/>
+          <span>Password : </span>
+          <input
             type="password"
             name="password"
             label="Password"
-            onChange={(value) => this.setState({ password: value })}
+            onChange={(event) => this.setState({ password: event.target.value })}
           />
           <br />
           <button type="submit">Login</button>
